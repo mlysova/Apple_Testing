@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testImplementation 'com.codeborne:selenide:5.24.2'
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.2')
+    testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.2')
+    testImplementation 'com.browserup:browserup-proxy-core:2.1.2'
+    testImplementation 'io.qameta.allure:allure-selenide:2.14.0'
+
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.5.4'
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.5.4'
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '2.5.4'
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.5.4'
+
+    testImplementation 'com.codeborne:selenide-appium:1.6.8'
+
+}
+
+task libs(type: Sync) {
+    from configurations.compileClasspath
+    from configurations.testRuntimeClasspath
+    into "$buildDir/lib"
+}
+
+testClasses.dependsOn libs
+
+test {
+    systemProperties = [
+            'file.encoding': 'UTF-8',
+            'BUILD_URL': System.getenv()['BUILD_URL'],
+            'spring.profiles.active': 'iOS'
+    ]
+    testLogging.showStandardStreams = true
+    useJUnitPlatform()
+}
