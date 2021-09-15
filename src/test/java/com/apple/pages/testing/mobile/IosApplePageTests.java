@@ -3,6 +3,7 @@ package com.apple.pages.testing.mobile;
 import com.apple.pages.testing.ApplePageTests;
 import com.browserup.bup.BrowserUpProxy;
 import com.browserup.bup.proxy.CaptureType;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import com.codeborne.selenide.WebDriverRunner;
@@ -73,11 +74,10 @@ public class IosApplePageTests implements ApplePageTests {
 
     @Test
     @Override
-    public void testAppleClickClick() {
+    public void testAppleClick() {
         $(By.xpath("//a[@class='ac-gn-link ac-gn-link-apple']")).click();
 
-        $(By.xpath("//span[@class='shop-ribbon-copy variant']"))
-                .shouldHave(text(" We look forward to welcoming you to our stores. Whether you "));
+        $(By.xpath("//a[@class='button control']")).shouldHave(text("Watch the event"));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class IosApplePageTests implements ApplePageTests {
         $(By.xpath("//a[@class='ac-gn-menuanchor ac-gn-menuanchor-open']")).click();
         $(By.xpath("//a[@class='ac-gn-link ac-gn-link-ipad']")).click();
 
-        $(By.xpath("//h2[@class='typography-hero-headline']")).shouldHave(exactText("New iPad Pro"));
+        $(By.xpath("//h2[@class='typography-hero-headline']")).shouldHave(Condition.text("New iPad"));;
     }
 
     @Test
@@ -105,7 +105,7 @@ public class IosApplePageTests implements ApplePageTests {
         $(By.xpath("//a[@class='ac-gn-menuanchor ac-gn-menuanchor-open']")).click();
         $(By.xpath("//a[@class='ac-gn-link ac-gn-link-iphone']")).click();
 
-        $(By.xpath("//p[@class='typography-hero-headline hero-headline']")).shouldHave(exactText("Blast Past Fast."));
+        $(By.xpath("//p[@class='typography-hero-headline hero-headline']")).shouldHave(exactText("Oh. So. Pro."));
     }
 
     @Test
@@ -114,8 +114,8 @@ public class IosApplePageTests implements ApplePageTests {
         $(By.xpath("//a[@class='ac-gn-menuanchor ac-gn-menuanchor-open']")).click();
         $(By.xpath("//a[@class='ac-gn-link ac-gn-link-watch']")).click();
 
-        $(By.xpath("//p[@class='tile-headline typography-custom-headline']"))
-                .shouldHave(exactText("The future of health is on your wrist."));
+        $(By.xpath("//p[@class='tile-headline  typography-custom-headline']"))
+                .shouldHave(exactText("Full screen ahead."));
     }
 
     @Test

@@ -29,7 +29,7 @@ public class EdgeBrowserApplePageTests extends BrowserApplePageBaseTests {
 
     @Override
     protected String getPlatformName() {
-//        return "win10";
-        return "mac";
+       return "win10";
+//        return "mac";
     }
 }

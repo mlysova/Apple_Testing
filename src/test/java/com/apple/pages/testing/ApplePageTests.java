@@ -2,7 +2,7 @@ package com.apple.pages.testing;
 
 public interface ApplePageTests {
 
-    void testAppleClickClick();
+    void testAppleClick();
 
     void testStoreButtonClick();
 
